@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+
+{%block content%}
+<h1>Tipo de Cuenta</h1>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>Descripcion</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% if object_list %}
+        {% for tipocuenta in object_list%}
+        <tr>
+            <td>{{tipocuenta.id}}</td>
+            <td>{{tipocuenta.descripcion}}</td>
+            <td>
+                <a class="btn btn-primary" href="{%url 'tipo_editar' tipocuenta.id %}">
+                Editar </a>
+                <a class="btn btn-danger" href="{%url 'tipo_eliminar' tipocuenta.id %}">
+                Eliminar </a>
+
+
+            </td>
+            {% endfor%}
+            {% else %}
+            <h1>No hay ningun tipo de cuenta registrada</h1>
+            {% endif %}
+        </tr>
+    </tbody>
+</table>
+
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+
+{%block content%}
+
+<h1>Cuenta</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>Nombre de la Cuenta</td>
+            <td>Fecha de Apertura</td>
+            <td>Salario</td>
+            <td>Tipo de Cuenta</td>
+            <td>Acciones</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% if object_list %}
+        {% for cuenta in object_list%}
+        <tr>
+            <td>{{cuenta.id}}</td>
+            <td>{{cuenta.nombre_cuenta}}</td>
+            <td>{{cuenta.fecha_apertura}}</td>
+            <td>{{cuenta.salario}}</td>
+            <td>{{cuenta.tipocuenta}}</td>
+            <td>
+                <a class="btn btn-primary" href="{%url 'cuenta_editar' cuenta.id %}">
+                Editar </a>
+                <a class="btn btn-danger" href="{%url 'cuenta_eliminar' cuenta.id %}">
+                Eliminar </a>
+
+
+            </td>
+            {% endfor%}
+            {% else %}
+            <h1>No hay cuentas registradas</h1>
+            {% endif %}
+        </tr>
+    </tbody>
+</table>
+
+
+{% endblock %}
